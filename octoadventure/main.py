@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from google.appengine.ext import db
+from google.appengine.ext import ndb
 import webapp2
 import jinja2
 import os
@@ -23,16 +23,16 @@ import sys
 
 jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
-class UserModel(db.Model):
-    currentUser = db.StringProperty(required = True)
+class UserModel(ndb.Model):
+    currentUser = ndb.StringProperty(required = True)
 
-class UserInfoModel(db.Model):
-    first_name = db.StringProperty(required = True)
-    last_name = db.StringProperty(required = True)
-    phone_number = db.PhoneNumberProperty(required = True)
-    email = db.EmailProperty(required = True)
-    dorm_building = db.StringProperty(required = True)
-    # dorm_room_number = db.IntegerProperty()
+class UserInfoModel(ndb.Model):
+    first_name = ndb.StringProperty(required = True)
+    last_name = ndb.StringProperty(required = True)
+    phone_number = ndb.StringProperty(required = True)
+    email = ndb.StringProperty(required = True)
+    dorm_building = ndb.StringProperty(required = True)
+    dorm_room_number = ndb.IntegerProperty()
 
 class UserInfoHandler(webapp2.RequestHandler):
     def get(self):
@@ -55,7 +55,7 @@ class UserInfoHandler(webapp2.RequestHandler):
         user_phone = self.request.get("number")
         user_email = self.request.get("email")
         user_building = self.request.get("building")
-        user_room = self.request.get("room")
+        user_room = int(self.request.get("room"))
         form = UserInfoModel(first_name = user_firstname, last_name = user_lastname, phone_number = user_phone, email = user_email, dorm_building = user_building, dorm_room_number = user_room)
         form.put()
         redirect_template = jinja_environment.get_template('templates/user.html')

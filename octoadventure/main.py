@@ -1,19 +1,3 @@
-#!/usr/bin/env python
-#
-# Copyright 2007 Google Inc.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
 from google.appengine.ext import ndb
 import webapp2
 import jinja2
@@ -32,7 +16,7 @@ class UserInfoModel(ndb.Model):
     phone_number = ndb.StringProperty(required = True)
     email = ndb.StringProperty(required = True)
     dorm_building = ndb.StringProperty(required = True)
-    dorm_room_number = ndb.IntegerProperty()
+    # dorm_room_number = ndb.IntegerProperty()
 
 class UserInfoHandler(webapp2.RequestHandler):
     def get(self):
@@ -55,16 +39,48 @@ class UserInfoHandler(webapp2.RequestHandler):
         user_phone = self.request.get("number")
         user_email = self.request.get("email")
         user_building = self.request.get("building")
-        user_room = int(self.request.get("room"))
-        form = UserInfoModel(first_name = user_firstname, last_name = user_lastname, phone_number = user_phone, email = user_email, dorm_building = user_building, dorm_room_number = user_room)
+        # user_room = int(self.request.get("room"))
+        form = UserInfoModel(first_name = user_firstname, last_name = user_lastname, phone_number = user_phone, email = user_email, dorm_building = user_building)
         form.put()
-        redirect_template = jinja_environment.get_template('templates/user.html')
+        redirect_template = jinja_environment.get_template('templates/home.html')
         self.response.out.write(redirect_template.render())
 
-# class HomepageHandler(webapp2.RequestHandler):
-#     def get(self):
-#         self.response.write('Hello world!')
+class HomepageHandler(webapp2.RequestHandler):
+    def get(self):
+        home_template = jinja_environment.get_template('templates/home.html')
+        self.response.out.write(home_template.render())
+
+class CreateHandler(webapp2.RequestHandler):
+    def get(self):
+        create_template = jinja_environment.get_template('templates/create.html')
+        self.response.out.write(create_template.render())
+
+class ViewHandler(webapp2.RequestHandler):
+    def get(self):
+        view_template = jinja_environment.get_template('templates/view.html')
+        self.response.out.write(view_template.render())
+
+class SearchHandler(webapp2.RequestHandler):
+    def get(self):
+        search_template = jinja_environment.get_template('templates/search.html')
+        self.response.out.write(search_template.render())
+
+class LocateHandler(webapp2.RequestHandler):
+    def get(self):
+        locate_template = jinja_environment.get_template('templates/locate.html')
+        self.response.out.write(locate_template.render())
+
+class MapsHandler(webapp2.RequestHandler):
+    def get(self):
+        maps_template = jinja_environment.get_template('templates/maps.html')
+        self.response.out.write(maps_template.render())
 
 app = webapp2.WSGIApplication([
-    ('/', UserInfoHandler)
+    ('/', UserInfoHandler),
+    ('/home', HomepageHandler),
+    ('/create', CreateHandler),
+    ('/view', ViewHandler),
+    ('/search', SearchHandler),
+    ('/locate', LocateHandler),
+    ('/maps', MapsHandler)
 ], debug=True)

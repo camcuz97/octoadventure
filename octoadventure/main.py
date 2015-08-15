@@ -10,13 +10,14 @@ jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.di
 class UserModel(ndb.Model):
     currentUser = ndb.StringProperty(required = True)
 
+# gets information from user. We can modify this, I just wanted datastore to be set up. Also the required information doesn't act as required....where as the not required one does....how to fix?
 class UserInfoModel(ndb.Model):
     first_name = ndb.StringProperty(required = True)
     last_name = ndb.StringProperty(required = True)
     phone_number = ndb.StringProperty(required = True)
     email = ndb.StringProperty(required = True)
     dorm_building = ndb.StringProperty(required = True)
-    # dorm_room_number = ndb.IntegerProperty()
+    dorm_room_number = ndb.IntegerProperty()
 
 class UserInfoHandler(webapp2.RequestHandler):
     def get(self):
@@ -39,12 +40,13 @@ class UserInfoHandler(webapp2.RequestHandler):
         user_phone = self.request.get("number")
         user_email = self.request.get("email")
         user_building = self.request.get("building")
-        # user_room = int(self.request.get("room"))
-        form = UserInfoModel(first_name = user_firstname, last_name = user_lastname, phone_number = user_phone, email = user_email, dorm_building = user_building)
+        user_room = int(self.request.get("room"))
+        form = UserInfoModel(first_name = user_firstname, last_name = user_lastname, phone_number = user_phone, email = user_email, dorm_building = user_building, dorm_room_number = user_room)
         form.put()
         redirect_template = jinja_environment.get_template('templates/home.html')
         self.response.out.write(redirect_template.render())
 
+# just a bunch of skeletal handlers. again, nothing set.
 class HomepageHandler(webapp2.RequestHandler):
     def get(self):
         home_template = jinja_environment.get_template('templates/home.html')
@@ -59,6 +61,11 @@ class ViewHandler(webapp2.RequestHandler):
     def get(self):
         view_template = jinja_environment.get_template('templates/view.html')
         self.response.out.write(view_template.render())
+
+class ManageHandler(webapp2.RequestHandler):
+    def get(self):
+        manage_template = jinja_environment.get_template('templates/manage.html')
+        self.response.out.write(manage_template.render())
 
 class SearchHandler(webapp2.RequestHandler):
     def get(self):
@@ -80,6 +87,7 @@ app = webapp2.WSGIApplication([
     ('/home', HomepageHandler),
     ('/create', CreateHandler),
     ('/view', ViewHandler),
+    ('/manage', ManageHandler),
     ('/search', SearchHandler),
     ('/locate', LocateHandler),
     ('/maps', MapsHandler)

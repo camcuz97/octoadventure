@@ -21,7 +21,7 @@ class UserInfoModel(ndb.Model):
 
 class UserInfoHandler(webapp2.RequestHandler):
     def get(self):
-        user_info_template = jinja_environment.get_template('templates/user.html')
+        user_info_template = jinja_environment.get_template('templates/signup.html')
         self.response.out.write(user_info_template.render())
 
         user = users.get_current_user()

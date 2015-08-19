@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Home</title>
+<title>Create</title>
+<link href = "css/home.css" rel = "stylesheet">
+
 </head>
 <body>
 <h1>Create a Group</h1>
-
+{% for user in users%}
+<div id="list_users"><{{user.firstname}}</h3></div>
+<span style="display:inline;">
+  <form action="/user_view" method="post">
+    <div><inpput id="get_button" type="submit" value="View {{user.firstname}} {{user.lastname}}'s Profile'"></div>
+      <input type="hidden" name="user_id" value={{user.key.id}}>
+    </form>
+    <br>
+    <br>
+{%endfor%}
 <form action="/home">
   <input type="submit" value="Back to Home">
 </form>

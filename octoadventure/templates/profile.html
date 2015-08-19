@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>View</title>
+<title>Profile</title>
 <link href = "css/home.css" rel = "stylesheet">
-
 </head>
 <body>
-<h1>View Existing Groups</h1>
-
+</ul>
+<br>
+<br>
+ <h1>{{user.firstname}} {{user.lastname}}</h1>
+<br>
+<div id="profile">
+{{user.number}}
+<br>
+{{user.email}}
+    <br><br>
+</div>
+<br>
 <form action="/home">
   <input type="submit" value="Back to Home">
 </form>

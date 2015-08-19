@@ -6,6 +6,10 @@
   display: inline-flex;
 }
 
+#four_boxes {
+  margin: auto;
+  text-align: center;
+}
 body{
   background-color: #EEEEEE;
 }
@@ -17,7 +21,8 @@ li{
 #Navigation_bar{
   position: relative;
   top: -70px;
-  float: right;
+  margin: auto;
+  text-align: center;
 }
 
 h1{
@@ -32,9 +37,14 @@ h1{
   width: 500px;
   height: 400px;
   padding: 25px;
-  border: 25px solid black;
+  /*border: 25px solid black;*/
   margin: 25px;
   /*background-image: url("http://picresize.com/images/rsz_34563.jpg");*/
+  background-color: #2CA0EB;
+}
+#Create:hover{
+  background-color: #2CA0EB;
+  opacity: 0.75;
 }
 
 #View{
@@ -44,8 +54,14 @@ h1{
   width: 500px;
   height: 400px;
   padding: 25px;
-  border: 25px solid black;
+  /*border: 25px solid black;*/
   margin: 25px;
+  background-color: #FF4523;
+}
+
+#View:hover{
+  background-color: #FF4523;
+  opacity: 0.75;
 }
 
 #Manage{
@@ -55,8 +71,14 @@ h1{
   width: 500px;
   height: 400px;
   padding: 25px;
-  border: 25px solid black;
+  /*border: 25px solid black;*/
   margin: 25px;
+  background-color: #21F067;
+}
+
+#Manage:hover{
+  background-color: #21F067;
+  opacity: 0.75;
 }
 
 #Locate{
@@ -66,6 +88,12 @@ h1{
   width: 500px;
   height: 400px;
   padding: 25px;
-  border: 25px solid black;
+  /*border: 25px solid black;*/
   margin: 25px;
+  background-color: #FF9E23;
+}
+
+#Locate:hover{
+  background-color: #FF9E23;
+  opacity: 0.75;
 }

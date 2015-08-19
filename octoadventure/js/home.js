@@ -1,5 +1,7 @@
 $(document).ready(function(){
   $("h1").click(function(){
-    $(this).hide();
+    $(this).fadeOut();
   });
 });
+
+// testing jQuery

@@ -1,0 +1,71 @@
+#First-two{
+  display: inline-flex;
+}
+
+#Second-two{
+  display: inline-flex;
+}
+
+body{
+  background-color: #EEEEEE;
+}
+
+li{
+  display:inline;
+}
+
+#Navigation_bar{
+  position: relative;
+  top: -70px;
+  float: right;
+}
+
+h1{
+  text-align: center;
+  font-size: 400%;
+}
+
+#Create{
+  /*position: relative;
+  right: 0;
+  bottom: 0;*/
+  width: 500px;
+  height: 400px;
+  padding: 25px;
+  border: 25px solid black;
+  margin: 25px;
+  /*background-image: url("http://picresize.com/images/rsz_34563.jpg");*/
+}
+
+#View{
+  /*position: relative;
+  right: 0;
+  bottom: 68px;*/
+  width: 500px;
+  height: 400px;
+  padding: 25px;
+  border: 25px solid black;
+  margin: 25px;
+}
+
+#Manage{
+  /*position: relative;
+  bottom: 636px;
+  left: 600px;*/
+  width: 500px;
+  height: 400px;
+  padding: 25px;
+  border: 25px solid black;
+  margin: 25px;
+}
+
+#Locate{
+  /*position: relative;
+  bottom: 1722px;
+  left: 600px;*/
+  width: 500px;
+  height: 400px;
+  padding: 25px;
+  border: 25px solid black;
+  margin: 25px;
+}

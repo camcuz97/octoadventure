@@ -17,12 +17,18 @@ body{
 li{
   display:inline;
 }
-
-#Navigation_bar{
+a{
+  text-decoration: none;
+}
+.menu{
   position: relative;
   top: -70px;
   margin: auto;
   text-align: center;
+}
+
+li:hover{
+  opacity: .75;
 }
 
 h1{
@@ -30,6 +36,11 @@ h1{
   font-size: 400%;
 }
 
+h2{
+  color: #EEE;
+  font-size: 48px;
+  align-self: center;
+}
 #Create{
   /*position: relative;
   right: 0;
@@ -42,6 +53,7 @@ h1{
   /*background-image: url("http://picresize.com/images/rsz_34563.jpg");*/
   background-color: #2CA0EB;
 }
+
 #Create:hover{
   background-color: #2CA0EB;
   opacity: 0.75;

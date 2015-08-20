@@ -9,7 +9,7 @@ jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.di
 
 class UserModel(ndb.Model):
     currentUser = ndb.StringProperty(required = True)
-    
+
 # gets information from user. We can modify this, I just wanted datastore to be set up. Also the required information doesn't act as required....where as the not required one does....how to fix?
 class UserInfoModel(ndb.Model):
     first_name = ndb.StringProperty(required = True)
@@ -18,9 +18,6 @@ class UserInfoModel(ndb.Model):
     email = ndb.StringProperty(required = True)
     dorm_building = ndb.StringProperty(required = True)
     dorm_room_number = ndb.IntegerProperty()
-
-# class GroupModel(ndb.Model):
-#     username= ndb.StringProperty(required=True)
 
 class UserInfoHandler(webapp2.RequestHandler):
     def get(self):
@@ -48,7 +45,8 @@ class UserInfoHandler(webapp2.RequestHandler):
         form.put()
         redirect_template = jinja_environment.get_template('templates/home.html')
         self.response.out.write(redirect_template.render())
-
+        # template_create = jinja_environment.get_template('templates/create.html')
+        # self.response.out.write(template_create.render({'users': all_users}))
 # just a bunch of skeletal handlers. again, nothing set.
 class HomepageHandler(webapp2.RequestHandler):
     def get(self):
@@ -56,11 +54,10 @@ class HomepageHandler(webapp2.RequestHandler):
         self.response.out.write(home_template.render())
 
 class CreateHandler(webapp2.RequestHandler):
-    all = UserInfoModel(first_name="this is a user")
     def get(self):
-        all_users=UserInfoModel.query().fetch()
+        all_users = UserInfoModel.query().fetch()
         create_template = jinja_environment.get_template('templates/create.html')
-        self.response.out.write(create_template.render({'users:all_users'}))
+        self.response.out.write(create_template.render({'users': all_users}))
 
 class ViewHandler(webapp2.RequestHandler):
     def get(self):
@@ -88,9 +85,13 @@ class MapsHandler(webapp2.RequestHandler):
         self.response.out.write(maps_template.render())
 
 class ProfileHandler(webapp2.RequestHandler):
-    def get(self):
+    def post(self):
+        user_id = self.request.get("user_id")
+        user_key = ndb.Key(UserInfoModel, int(user_id))
+        user_profile = user_key.get()
+        all_users = UserInfoModel.query().fetch()
         profile_template = jinja_environment.get_template('templates/profile.html')
-        self.response.out.write(profile_template.render())
+        self.response.out.write(profile_template.render({'user': user_profile}))
 
 app = webapp2.WSGIApplication([
     ('/', UserInfoHandler),

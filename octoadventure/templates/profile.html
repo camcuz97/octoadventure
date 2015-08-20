@@ -8,17 +8,18 @@
 </ul>
 <br>
 <br>
- <h1>{{user.firstname}} {{user.lastname}}</h1>
+ <h1>{{user.first_name}} {{user.last_name}}</h1>
 <br>
 <div id="profile">
-{{user.number}}
+phone number: {{user.phone_number}}
 <br>
-{{user.email}}
+email: {{user.email}}
     <br><br>
 </div>
 <br>
-<form action="/home">
-  <input type="submit" value="Back to Home">
+
+<form action="/create">
+  <input type="submit" value="Back to Create">
 </form>
 </body>
 </html>

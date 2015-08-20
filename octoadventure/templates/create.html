@@ -7,19 +7,31 @@
 </head>
 <body>
 <h1>Create a Group</h1>
+<br>
+<form action="/search">
+<input type="text" name="search">
+<input type="submit" value="Search">
+</form>
+<br>
 {% for user in users%}
-<div id="list_users"><{{user.firstname}}</h3></div>
+<div id="list_users">
+  <h3>{{user.first_name}}</h3>
+</div>
+
 <span style="display:inline;">
-  <form action="/user_view" method="post">
-    <div><inpput id="get_button" type="submit" value="View {{user.firstname}} {{user.lastname}}'s Profile'"></div>
-      <input type="hidden" name="user_id" value={{user.key.id}}>
-    </form>
-    <br>
-    <br>
+  <form action="/profile" method="post">
+        <div><input type="submit" value="View {{user.first_name}} {{user.last_name}}'s Profile"</div>
+        <input type="hidden" name="user_id" value={{user.key.id()}}>
+      </form>
+  </span>
+      <br>
+      <br>
 {%endfor%}
+
 <form action="/home">
   <input type="submit" value="Back to Home">
 </form>
+
 </body>
 </html>
 <!-- What's our organization for groups vs. individuals in datastore?

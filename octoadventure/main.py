@@ -101,6 +101,5 @@ app = webapp2.WSGIApplication([
     ('/manage', ManageHandler),
     ('/search', SearchHandler),
     ('/locate', LocateHandler),
-    ('/maps', MapsHandler),
-    ('/profile', ProfileHandler)
+    ('/maps', MapsHandler)
 ], debug=True)

@@ -1,0 +1,15 @@
+h1{
+  font-size: 400%;
+  text-align: center;
+}
+h3{
+  font-size: 250%;
+
+}
+#Search_Query{
+  align-content: center;
+}
+
+.Search_results{
+  float: right;
+}

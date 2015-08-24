@@ -2,35 +2,37 @@
 <html>
 <head>
   <title>Create</title>
-  <link href = "css/home.css" rel = "stylesheet">
+  <link href = "css/create.css" rel = "stylesheet">
 </head>
 <body>
   <h1>Create a Group</h1>
+
   <br>
-  <form action="/search">
-      <input type="text" name="search">
-      <input type="submit" value="Search">
-  </form>
+  <div id = "Search_query">
+    <form action="/search">
+        <input type="text" name="search">
+        <input type="submit" value="Search">
+    </form>
+  </div>
   <br>
-  {% for user in users%}
-  <div id="list_users">
-  <h3>{{user.first_name}}</h3>
+
+  <div class = "Search_results">
+    {% for user in users%}
+      <h3>{{user.first_name}}</h3>
+        <form method="" action="/profile">
+        <div><input type="submit" value="View {{user.first_name}} {{user.last_name}}'s Profile"</div>
+        <input type="hidden" name="user_id" value={{user.key.id()}}>
+      </form>
+    <br>
+    <br>
+    {%endfor%}
   </div>
 
-  <span style="display:inline;">
-    <form method="" action="/profile">
-      <div><input type="submit" value="View {{user.first_name}} {{user.last_name}}'s Profile"</div>
-      <input type="hidden" name="user_id" value={{user.key.id()}}>
+  <!-- <div id = "Home_Button">
+    <form action="/home">
+      <input type="submit" value="Back to Home">
     </form>
-  </span>
-  <br>
-  <br>
-  {%endfor%}
-
-  <form action="/home">
-    <input type="submit" value="Back to Home">
-  </form>
-
+  </div> -->
 </body>
 </html>
 <!-- What's our organization for groups vs. individuals in datastore?

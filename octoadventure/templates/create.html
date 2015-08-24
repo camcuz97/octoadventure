@@ -46,3 +46,18 @@
   <div id="list_users">
     <h3>{{user.first_name}}</h3>
   </div>
+
+  <span style="display:inline;">
+    <form method="" action="/profile">
+      <div><input type="submit" value="View {{user.first_name}} {{user.last_name}}'s Profile"></div>
+      <input type="hidden" name="user_id" value={{user.key.id()}}>
+    </form>
+    </span>
+  {%endfor%}
+  <br>
+  <br>
+  <form action="/home">
+    <input type="submit" value="Back to Home">
+  </form>
+  </body>
+  </html>

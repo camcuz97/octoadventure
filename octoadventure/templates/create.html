@@ -46,23 +46,21 @@
 {% for user in users%}
 <div id="list_users">
   <h3>{{user.first_name}}</h3>
-</div>
+  </div>
 
-<span style="display:inline;">
-  <form action="/profile" method="post">
-        <div><input type="submit" value="View {{user.first_name}} {{user.last_name}}'s Profile"</div>
-        <input type="hidden" name="user_id" value={{user.key.id()}}>
-      </form>
-      <br>
-      <br>
+  <span style="display:inline;">
+    <form method="" action="/profile">
+      <div><input type="submit" value="View {{user.first_name}} {{user.last_name}}'s Profile"</div>
+      <input type="hidden" name="user_id" value={{user.key.id()}}>
+    </form>
   </span>
-      <br>
-      <br>
-{%endfor%}
+  <br>
+  <br>
+  {%endfor%}
 
-<form action="/home">
-  <input type="submit" value="Back to Home">
-</form>
+  <form action="/home">
+    <input type="submit" value="Back to Home">
+  </form>
 
 </body>
 </html>

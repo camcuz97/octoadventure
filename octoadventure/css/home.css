@@ -12,6 +12,8 @@
 }
 body{
   background-color: #EEEEEE;
+  margin: auto;
+  text-align: center;
 }
 
 li{
@@ -41,6 +43,12 @@ h2{
   font-size: 48px;
   align-self: center;
 }
+
+h3{
+  margin: auto;
+  text-align: center;
+}
+
 #Create{
   /*position: relative;
   right: 0;

@@ -2,15 +2,27 @@
 <html>
 <head>
 <title>Home</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src = "js/home.js"></script>
 <link href = "css/home.css" rel = "stylesheet">
 </head>
 <body>
-  <h1>Locate Meeting Areas</h1>
 
-  <form method="get" action="/maps">
-    <input type="text" name="button" placeholder="Radius">
-    <input type="submit" name="form_button" value="Find Places">
-  </form>
+<h1>Locate Meeting Areas</h1>
+<br>
+<br>
+<br>
+<div class="menu">
+  <ul>
+    <li><a href="/home"><img src = "http://dabuttonfactory.com/button.png?t=Home&f=Droid+Serif-Bold&ts=20&tc=eee&tshs=1&tshc=000&hp=20&vp=8&c=9&bgt=unicolored&bgc=343434"></img></a></li>
+    <li><a href="Account Settings"><img src = "http://dabuttonfactory.com/button.png?t=Account+Settings&f=Droid+Serif-Bold&ts=20&tc=eee&tshs=1&tshc=000&hp=20&vp=8&c=9&bgt=unicolored&bgc=343434"></img></a></li>
+    <li><a href="Logout"><img src ="http://dabuttonfactory.com/button.png?t=Logout&f=Droid+Serif-Bold&ts=20&tc=eee&tshs=1&tshc=000&hp=20&vp=8&c=9&bgt=unicolored&bgc=343434"></img></a></li>
+  </ul>
+</div>
+<form method="get" action="/maps">
+  <input type="text" name="button" placeholder="Radius">
+<input type="submit" name="form_button" value="Find Places">
+</form>
 
   <form action="/home">
     <input type="submit" value="Back to Home">

@@ -19,7 +19,7 @@
 </div>
 
 <span style="display:inline;">
-  <form action="/profile" method="post">
+  <form method="" action="/profile">
         <div><input type="submit" value="View {{user.first_name}} {{user.last_name}}'s Profile"</div>
         <input type="hidden" name="user_id" value={{user.key.id()}}>
       </form>

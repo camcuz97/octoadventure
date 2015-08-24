@@ -35,13 +35,16 @@ class UserInfoHandler(webapp2.RequestHandler):
             self.redirect(users.create_login_url(self.request.uri))
 
     def post(self):
+        form = UserInfoModel()
         user_firstname = self.request.get("firstname")
         user_lastname = self.request.get("lastname")
         user_phone = self.request.get("number")
         user_email = self.request.get("email")
         user_building = self.request.get("building")
-        user_room = int(self.request.get("room"))
-        form = UserInfoModel(first_name = user_firstname, last_name = user_lastname, phone_number = user_phone, email = user_email, dorm_building = user_building, dorm_room_number = user_room)
+        if self.request.get("room").isdigit():
+            user_room = int(self.request.get("room"))
+            form.dorm_room_number = user_room
+        form.populate(first_name = user_firstname, last_name = user_lastname, phone_number = user_phone, email = user_email, dorm_building = user_building)
         form.put()
         redirect_template = jinja_environment.get_template('templates/home.html')
         self.response.out.write(redirect_template.render())
@@ -85,7 +88,7 @@ class MapsHandler(webapp2.RequestHandler):
         self.response.out.write(maps_template.render())
 
 class ProfileHandler(webapp2.RequestHandler):
-    def post(self):
+    def get(self):
         user_id = self.request.get("user_id")
         user_key = ndb.Key(UserInfoModel, int(user_id))
         user_profile = user_key.get()

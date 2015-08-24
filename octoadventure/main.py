@@ -19,6 +19,13 @@ class UserInfoModel(ndb.Model):
     dorm_building = ndb.StringProperty(required = True)
     dorm_room_number = ndb.IntegerProperty()
 
+class GroupModel(ndb.Model):
+    group = ndb.StringProperty(required = True)
+    member1 = ndb.StringProperty(required = True)
+    member2 = ndb.StringProperty(required = True)
+    member3 = ndb.StringProperty(required = True)
+
+
 class UserInfoHandler(webapp2.RequestHandler):
     def get(self):
         user_info_template = jinja_environment.get_template('templates/signup.html')
@@ -59,10 +66,24 @@ class CreateHandler(webapp2.RequestHandler):
         create_template = jinja_environment.get_template('templates/create.html')
         self.response.out.write(create_template.render({'users': all_users}))
 
+    def post(self):
+        group_name = self.request.get("groupname")
+        group_member1 = self.request.get("groupmember1")
+        group_member2 = self.request.get("groupmember2")
+        group_member3 = self.request.get("groupmember3")
+        team = GroupModel(group = group_name, member1 = group_member1, member2 = group_member2, member3 = group_member3)
+        team.put()
+        group_template = jinja_environment.get_template('templates/create.html')
+        self.response.out.write(group_template.render())
+
 class ViewHandler(webapp2.RequestHandler):
     def get(self):
+        # group_id =self.request.get("group_id")
+        # group_key = ndb.Key(GroupModel, int(group_id))
+        # group_list = group_key.get()
+        all_groups = GroupModel.query().fetch()
         view_template = jinja_environment.get_template('templates/view.html')
-        self.response.out.write(view_template.render())
+        self.response.out.write(view_template.render({'groups': all_groups}))
 
 class ManageHandler(webapp2.RequestHandler):
     def get(self):
@@ -101,5 +122,6 @@ app = webapp2.WSGIApplication([
     ('/manage', ManageHandler),
     ('/search', SearchHandler),
     ('/locate', LocateHandler),
-    ('/maps', MapsHandler)
+    ('/maps', MapsHandler),
+    ('/profile', ProfileHandler)
 ], debug=True)

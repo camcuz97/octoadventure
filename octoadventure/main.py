@@ -2,20 +2,22 @@ from google.appengine.ext import ndb
 import webapp2
 import jinja2
 import os
+import logging
 from google.appengine.api import users
 import sys
 
 jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
+
+class UserModel(ndb.Model):
+    currentUser = ndb.StringProperty(required = True)
+    group_keys = ndb.KeyProperty(GroupModel, repeated = True)
 
 class GroupModel(ndb.Model):
     group = ndb.StringProperty(required = True)
     member1 = ndb.StringProperty(required = True)
     member2 = ndb.StringProperty(required = True)
     member3 = ndb.StringProperty(required = True)
-
-class UserModel(ndb.Model):
-    currentUser = ndb.StringProperty(required = True)
-    group_keys = ndb.KeyProperty(GroupModel, repeated = True)
+    user_key = ndb.KeyProperty(UserModel)
 
 class UserInfoModel(ndb.Model):
     first_name = ndb.StringProperty(required = True)
@@ -73,8 +75,32 @@ class CreateHandler(webapp2.RequestHandler):
         group_member1 = self.request.get("groupmember1")
         group_member2 = self.request.get("groupmember2")
         group_member3 = self.request.get("groupmember3")
-        team = GroupModel(group = group_name, member1 = group_member1, member2 = group_member2, member3 = group_member3)
-        team.put()
+
+        logged_in_users = UserModel.query().fetch()
+        current_user = users.get_current_user()
+        # logging.info(logged_in_users[0])
+        logging.info(current_user.user_id())
+        for user in logged_in_users:
+            logging.info(user.currentUser)
+            if user.currentUser == current_user.user_id():
+                current_user_key = user.key
+                team = GroupModel(group = group_name, member1 = group_member1, member2 = group_member2, member3 = group_member3, user_key = current_user_key)
+                team.put()
+                break
+
+        # user = UserModel(currentUser = current_user.user_id())
+        # user.put()
+
+        # user = users.get_current_user()
+        # logging.info(user)
+        # logging.info(user.user_id())
+        # user = UserModel(currentUser = user.user_id())
+        # user.group_key.append(team.key)
+        # user.put()
+        # user = users.get_current_user()
+        # user.group_key.append(team.key)
+        # user.put()
+
         group_template = jinja_environment.get_template('templates/create.html')
         self.response.out.write(group_template.render())
 

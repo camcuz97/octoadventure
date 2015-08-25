@@ -40,3 +40,9 @@ $(document).ready(function() {
   scrollIntervalID = setInterval(stickIt, 10);
 
 });
+
+$( document).ready(function() {
+    $('#search_button').click(function(){
+        $('#message').html($('#search_bar').val());
+    });
+});

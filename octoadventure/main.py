@@ -7,10 +7,16 @@ import sys
 
 jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
+class GroupModel(ndb.Model):
+    group = ndb.StringProperty(required = True)
+    member1 = ndb.StringProperty(required = True)
+    member2 = ndb.StringProperty(required = True)
+    member3 = ndb.StringProperty(required = True)
+
 class UserModel(ndb.Model):
     currentUser = ndb.StringProperty(required = True)
+    group_keys = ndb.KeyProperty(GroupModel, repeated = True)
 
-# gets information from user. We can modify this, I just wanted datastore to be set up. Also the required information doesn't act as required....where as the not required one does....how to fix?
 class UserInfoModel(ndb.Model):
     first_name = ndb.StringProperty(required = True)
     last_name = ndb.StringProperty(required = True)
@@ -18,13 +24,6 @@ class UserInfoModel(ndb.Model):
     email = ndb.StringProperty(required = True)
     dorm_building = ndb.StringProperty(required = True)
     dorm_room_number = ndb.IntegerProperty()
-
-class GroupModel(ndb.Model):
-    group = ndb.StringProperty(required = True)
-    member1 = ndb.StringProperty(required = True)
-    member2 = ndb.StringProperty(required = True)
-    member3 = ndb.StringProperty(required = True)
-
 
 class UserInfoHandler(webapp2.RequestHandler):
     def get(self):

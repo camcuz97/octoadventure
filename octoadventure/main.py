@@ -2,6 +2,7 @@ from google.appengine.ext import ndb
 import webapp2
 import jinja2
 import os
+import logging
 from google.appengine.api import users
 import sys
 
@@ -9,6 +10,15 @@ jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.di
 
 class UserModel(ndb.Model):
     currentUser = ndb.StringProperty(required = True)
+
+class GroupModel(ndb.Model):
+    group = ndb.StringProperty(required = True)
+    member1 = ndb.StringProperty(required = True)
+    member2 = ndb.StringProperty(required = True)
+    member3 = ndb.StringProperty(required = True)
+    user_key = ndb.KeyProperty(UserModel)
+
+
 
 # gets information from user. We can modify this, I just wanted datastore to be set up. Also the required information doesn't act as required....where as the not required one does....how to fix?
 class UserInfoModel(ndb.Model):
@@ -19,11 +29,6 @@ class UserInfoModel(ndb.Model):
     dorm_building = ndb.StringProperty(required = True)
     dorm_room_number = ndb.IntegerProperty()
 
-class GroupModel(ndb.Model):
-    group = ndb.StringProperty(required = True)
-    member1 = ndb.StringProperty(required = True)
-    member2 = ndb.StringProperty(required = True)
-    member3 = ndb.StringProperty(required = True)
 
 
 class UserInfoHandler(webapp2.RequestHandler):
@@ -74,8 +79,32 @@ class CreateHandler(webapp2.RequestHandler):
         group_member1 = self.request.get("groupmember1")
         group_member2 = self.request.get("groupmember2")
         group_member3 = self.request.get("groupmember3")
-        team = GroupModel(group = group_name, member1 = group_member1, member2 = group_member2, member3 = group_member3)
-        team.put()
+
+        logged_in_users = UserModel.query().fetch()
+        current_user = users.get_current_user()
+        # logging.info(logged_in_users[0])
+        logging.info(current_user.user_id())
+        for user in logged_in_users:
+            logging.info(user.currentUser)
+            if user.currentUser == current_user.user_id():
+                current_user_key = user.key
+                team = GroupModel(group = group_name, member1 = group_member1, member2 = group_member2, member3 = group_member3, user_key = current_user_key)
+                team.put()
+                break
+
+        # user = UserModel(currentUser = current_user.user_id())
+        # user.put()
+
+        # user = users.get_current_user()
+        # logging.info(user)
+        # logging.info(user.user_id())
+        # user = UserModel(currentUser = user.user_id())
+        # user.group_key.append(team.key)
+        # user.put()
+        # user = users.get_current_user()
+        # user.group_key.append(team.key)
+        # user.put()
+
         group_template = jinja_environment.get_template('templates/create.html')
         self.response.out.write(group_template.render())
 

@@ -1,4 +1,46 @@
 body {
     background-color:#4B4B4B;
+}
 
+.create,
+.view,
+.manage,
+.locate {
+	height: 350px;
+}
+
+.create {
+	background-color: #2CA0EB;
+}
+
+.create:hover{
+  background-color: #2CA0EB;
+  opacity: 0.75;
+}
+
+.view {
+	background-color: #FF4523;
+}
+
+.view:hover{
+  background-color: #FF4523;
+  opacity: 0.75;
+}
+
+.manage{
+  background-color: #21F067;
+}
+
+.manage:hover{
+  background-color: #21F067;
+  opacity: 0.75;
+}
+
+.locate{
+  background-color: #FF9E23;
+}
+
+.locate:hover{
+  background-color: #FF9E23;
+  opacity: 0.75;
 }

@@ -1,11 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Manage</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src = "js/home.js"></script>
-<link href = "css/home.css" rel = "stylesheet">
-</head>
+{% extends "templates/base.html" %}
+
+{% block title %}
+  Manage
+{% endblock %}
+
+{% block head %}
+  {{ super() }}
+  <link href="css/home.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
 <body>
   <h1>Manage Your Groups</h1>
 <br>
@@ -28,8 +32,7 @@
 <form action="/home">
   <input type="submit" value="Back to Home">
 </form>
-</body>
-</html>
+{% endblock %}
 <!-- I know I added add/remove member here,
 but it's probably better within another function or handler....
 I'm not really sure how we're organizing it, actually -->

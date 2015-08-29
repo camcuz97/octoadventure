@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
+{% extends "templates/base.html" %}
 
-  <title>Profile</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src = "js/home.js"></script>
-<link href = "css/home.css" rel = "stylesheet">
-</head>
-<body>
+{% block title %}
+  Profile
+{% endblock %}
+
+{% block head %}
+  {{ super() }}
+  <link href="css/home.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
 </ul>
   <br>
 <br>
@@ -38,5 +40,4 @@ dorm room number: {{user.dorm_room_number}}
 <form action="/create">
   <input type="submit" value="Back to Create">
 </form>
-</body>
-</html>
+{% endblock %}

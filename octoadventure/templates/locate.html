@@ -1,12 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Home</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src = "js/home.js"></script>
-<link href = "css/home.css" rel = "stylesheet">
-</head>
-<body>
+{% extends "templates/base.html" %}
+
+{% block title %}
+  Locate
+{% endblock %}
+
+{% block head %}
+  {{ super() }}
+  <link href="css/home.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
 
 <h1>Locate Meeting Areas</h1>
 <br>
@@ -27,5 +30,4 @@
   <form action="/home">
     <input type="submit" value="Back to Home">
   </form>
-</body>
-</html>
+{% endblock %}

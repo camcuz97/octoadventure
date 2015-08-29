@@ -117,3 +117,8 @@ h3{
   background-color: #FF9E23;
   opacity: 0.75;
 }
+
+#map-canvas {
+  height: 500px;
+  width: 500px;
+}

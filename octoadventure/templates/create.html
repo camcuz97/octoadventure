@@ -38,10 +38,12 @@
   </form>
   <br>
   <br>
-  <form action="/search">
-    <input type="text" name="search">
-    <input type="submit" value="Search">
+  Search for Users in Database:
+  <form action="">
+    <input id="search_bar" type="text" name="search" placeholder="Username">
+    <input id="search_button" type="submit" value="Search">
   </form>
+  <h4 id="message"></h4>
   <br>
   <br>
   <br>
@@ -49,7 +51,6 @@
   <div id="list_users">
     <h3>{{user.first_name}}</h3>
   </div>
-
   <span style="display:inline;">
     <form method="" action="/profile">
       <div><input type="submit" value="View {{user.first_name}} {{user.last_name}}'s Profile"></div>

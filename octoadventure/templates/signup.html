@@ -27,27 +27,27 @@
       <form action="/" method="post">
         <div class="login-form">
           <div class="form-group">
-            <input type="text" class="form-control login-field" value="" placeholder="First name" id="fname" name="firstname" />
+            <input type="text" class="form-control login-field" value="" placeholder="First name" id="fname" name="firstname" required />
             <label class="login-field-icon fui-user" for="fname"></label>
           </div>
 
           <div class="form-group">
-            <input type="text" class="form-control login-field" value="" placeholder="Last name" id="lname" name="lastname" />
+            <input type="text" class="form-control login-field" value="" placeholder="Last name" id="lname" name="lastname" required />
             <label class="login-field-icon fui-user" for="lname"></label>
           </div>
 
           <div class="form-group">
-            <input type="text" class="form-control login-field" value="" placeholder="Email" id="email" name="email" />
+            <input type="text" class="form-control login-field" value="" placeholder="Email" id="email" name="email" required />
             <label class="login-field-icon fui-mail" for="email"></label>
           </div>
 
           <div class="form-group">
-            <input type="text" class="form-control login-field" value="" placeholder="Phone" id="phone" name="number" />
+            <input type="text" class="form-control login-field" value="" placeholder="Phone" id="phone" name="number" required />
             <label class="login-field-icon fui-bubble" for="phone"></label>
           </div>
 
           <div class="form-group">
-            <input type="text" class="form-control login-field" value="" placeholder="Dorm Building" id="dorm" name="building" />
+            <input type="text" class="form-control login-field" value="" placeholder="Dorm Building" id="dorm" name="building" required />
             <label class="login-field-icon fui-home" for="dorm"></label>
           </div>
 
@@ -57,11 +57,15 @@
           </div>
 
           <div class="form-group">
-            <input type="password" class="form-control login-field" value="" placeholder="Password" id="login-pass" />
+            <input type="password" class="form-control login-field" value="" placeholder="Password" id="login-pass" required />
             <label class="login-field-icon fui-lock" for="login-pass"></label>
           </div>
 
-          <h4><button class="btn btn-sm btn-inverse"><i class="fui-plus"></i></button> Courses</h4>
+          <h4>
+            <button class="btn btn-sm btn-inverse">
+              <i class="fui-plus"></i>
+            </button> Courses
+          </h4>
 
           <button type="submit" class="btn btn-primary btn-lg btn-block" name="form_button">Let's Begin!</button>
         </div>

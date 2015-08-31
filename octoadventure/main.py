@@ -10,7 +10,6 @@ jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.di
 
 class UserModel(ndb.Model):
     currentUser = ndb.StringProperty(required = True)
-    group_keys = ndb.KeyProperty(GroupModel, repeated = True)
 
 class GroupModel(ndb.Model):
     group = ndb.StringProperty(required = True)

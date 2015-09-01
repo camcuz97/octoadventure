@@ -6,6 +6,7 @@
 
 {% block head %}
   {{ super() }}
+  <link href="css/home.css" rel="stylesheet">
   <link href="css/create.css" rel="stylesheet">
 {% endblock %}
 
@@ -25,42 +26,55 @@
   <br>
   <br>
   <br>
-  <form action="/create" method="post">
-    <input type="text" name="groupname" placeholder="Group Name">
-    <br>
-    <input type="text" name="groupmember1" placeholder="Group Member">
-    <br>
-    <input type="text" name="groupmember2" placeholder="Group Member">
-    <br>
-    <input type="text" name="groupmember3" placeholder="Group Member">
-    <br>
-    <input type="submit" value="Create Group">
-  </form>
-  <br>
-  <br>
-  Search for Users in Database:
-  <form action="">
-    <input id="search_bar" type="text" name="search" placeholder="Username">
-    <input id="search_button" type="submit" value="Search">
-  </form>
-  <h4 id="message"></h4>
-  <br>
-  <br>
-  <br>
-  {% for user in users%}
-  <div id="list_users">
-    <h3>{{user.first_name}}</h3>
-  </div>
-  <span style="display:inline;">
-    <form method="" action="/profile">
-      <div><input type="submit" value="View {{user.first_name}} {{user.last_name}}'s Profile"></div>
-      <input type="hidden" name="user_id" value={{user.key.id()}}>
+  <div class="col-md-6">
+    <h3>Add Users to Group:</h3>
+    <form action="/create" method="post">
+      <div class="form-group">
+        <input type="text" name="groupname" placeholder="Group Name" class="form-control">
+      </div>
+      <div class="form-group">
+        <input type="text" name="groupmember1" placeholder="Group Member" class="form-control">
+      </div>
+      <div class="form-group">
+        <input type="text" name="groupmember2" placeholder="Group Member" class="form-control">
+      </div>
+      <div class="form-group">
+        <input type="text" name="groupmember3" placeholder="Group Member" class="form-control">
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Create Group</button>
+      </div>
     </form>
-    </span>
-  {%endfor%}
-  <br>
-  <br>
-  <form action="/home">
-    <input type="submit" value="Back to Home">
-  </form>
+  </div>
+  <div class="col-md-6">
+    <h3>Search for Users in Database:</h3>
+    <form action="">
+      <div class="form-group">
+        <input id="search_bar" type="text" name="search" placeholder="Username" class="form-control">
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i> Search</button>
+      </div>
+    </form>
+    <h4 id="message"></h4>
+    <br>
+    <br>
+    <br>
+    {% for user in users%}
+    <div id="list_users">
+      <h3>{{user.first_name}}</h3>
+    </div>
+    <span style="display:inline;">
+      <form method="" action="/profile">
+        <div><input type="submit" value="View {{user.first_name}} {{user.last_name}}'s Profile"></div>
+        <input type="hidden" name="user_id" value={{user.key.id()}}>
+      </form>
+      </span>
+    {%endfor%}
+    <br>
+    <br>
+  </div>
+  <div class="col-md-12">
+    <a href="/home"><button class="btn btn-default"><i class="glyphicon glyphicon-home"></i> Back to Home</button></a>
+  </div>
 {% endblock %}
